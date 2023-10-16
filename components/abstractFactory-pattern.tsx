@@ -1,31 +1,34 @@
 abstract class UIFactory {
-    abstract createButton(): Button;
-    abstract createTextField(): TextField;
+    public abstract createButton(): Button;
+    public abstract createTextField(): TextField;
 }
 
 class MaterialUIFactory extends UIFactory {
-    public createButton() {
+    public createButton(): MaterialUIButton {
         return new MaterialUIButton();
     }
+
     public createTextField() {
         return new MaterialUITextField();
     }
 }
 
 class JQueryUIFactory extends UIFactory {
-    public createButton() {
+    public createButton(): JQueryUIButton {
         return new JQueryUIButton();
     }
-    public createTextField() {
+
+    public createTextField(): JQueryUITextField {
         return new JQueryUITextField();
     }
 }
 
 class BootstrapUIFactory extends UIFactory {
-    public createButton() {
+    public createButton(): BootstrapButton {
         return new BootstrapButton();
     }
-    public createTextField() {
+
+    public createTextField(): BootstrapTextField {
         return new BootstrapTextField();
     }
 }
