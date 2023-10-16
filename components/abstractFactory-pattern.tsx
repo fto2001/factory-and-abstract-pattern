@@ -1,34 +1,22 @@
 abstract class UIFactory {
-    public abstract createButton(): Button;
-    public abstract createTextField(): TextField;
+    abstract createButton(): Button;
+    abstract createTextField(): TextField;
 }
 
 class MaterialUIFactory extends UIFactory {
-    public createButton(): MaterialUIButton {
+    public createButton() {
         return new MaterialUIButton();
     }
-
     public createTextField() {
         return new MaterialUITextField();
     }
 }
 
-class JQueryUIFactory extends UIFactory {
-    public createButton(): JQueryUIButton {
-        return new JQueryUIButton();
-    }
-
-    public createTextField(): JQueryUITextField {
-        return new JQueryUITextField();
-    }
-}
-
 class BootstrapUIFactory extends UIFactory {
-    public createButton(): BootstrapButton {
+    public createButton() {
         return new BootstrapButton();
     }
-
-    public createTextField(): BootstrapTextField {
+    public createTextField() {
         return new BootstrapTextField();
     }
 }
@@ -46,7 +34,6 @@ class MaterialUIButton implements Button {
         console.log('Material UI Button changed');
     }
 }
-
 class MaterialUITextField implements TextField {
     public displayText() {
         return 'Hello world';
@@ -58,22 +45,9 @@ class BootstrapButton implements Button {
         console.log('Bootstrap Button changed');
     }
 }
-
 class BootstrapTextField implements TextField {
     public displayText() {
         return 'Hello world';
-    }
-}
-
-class JQueryUIButton implements Button {
-    public onChange() {
-        console.log('JQuery UI Button changed');
-    }
-}
-
-class JQueryUITextField implements TextField {
-    public displayText() {
-        return 'Goodbye world';
     }
 }
 
@@ -89,11 +63,4 @@ const bootstrapButton = bootstrapFactory.createButton();
 const bootstrapTextField = bootstrapFactory.createTextField();
 
 bootstrapButton.onChange();
-console.log(bootstrapTextField.displayText());
-
-const jQueryFactory = new JQueryUIFactory();
-const jQueryButton = jQueryFactory.createButton();
-const jQueryTextField = jQueryFactory.createTextField();
-
-jQueryButton.onChange();
-console.log(jQueryTextField.displayText());
+console.log(bootstrapTextField.displayText()); 
