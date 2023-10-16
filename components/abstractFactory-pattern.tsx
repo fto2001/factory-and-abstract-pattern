@@ -1,36 +1,66 @@
-class UIFactory {
-    createButton() { }
-    createTextField() { }
+abstract class UIFactory {
+    abstract createButton(): Button;
+    abstract createTextField(): TextField;
 }
 
 class MaterialUIFactory extends UIFactory {
-    createButton() {
+    public createButton() {
         return new MaterialUIButton();
     }
-    createTextField() {
+    public createTextField() {
         return new MaterialUITextField();
     }
 }
 
 class BootstrapUIFactory extends UIFactory {
-    createButton() {
+    public createButton() {
         return new BootstrapButton();
     }
-    createTextField() {
+    public createTextField() {
         return new BootstrapTextField();
     }
 }
 
-class MaterialUIButton { }
-class MaterialUITextField { }
+interface Button {
+    onChange(): void;
+}
 
-class BootstrapButton { }
-class BootstrapTextField { }
+interface TextField {
+    displayText(): string;
+}
+
+class MaterialUIButton implements Button {
+    public onChange() {
+        console.log('Material UI Button changed');
+    }
+}
+class MaterialUITextField implements TextField {
+    public displayText() {
+        return 'Hello world';
+    }
+}
+
+class BootstrapButton implements Button {
+    public onChange() {
+        console.log('Bootstrap Button changed');
+    }
+}
+class BootstrapTextField implements TextField {
+    public displayText() {
+        return 'Hello world';
+    }
+}
 
 const materialFactory = new MaterialUIFactory();
-const button = materialFactory.createButton();
-const textField = materialFactory.createTextField();
+const materialButton = materialFactory.createButton();
+const materialTextField = materialFactory.createTextField();
+
+materialButton.onChange();
+console.log(materialTextField.displayText());
 
 const bootstrapFactory = new BootstrapUIFactory();
-const button2 = bootstrapFactory.createButton();
-const textField2 = bootstrapFactory.createTextField();
+const bootstrapButton = bootstrapFactory.createButton();
+const bootstrapTextField = bootstrapFactory.createTextField();
+
+bootstrapButton.onChange();
+console.log(bootstrapTextField.displayText()); 
