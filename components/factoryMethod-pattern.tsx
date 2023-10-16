@@ -3,13 +3,13 @@ abstract class Car {
 }
 
 class SportsCar extends Car {
-    drive() {
+    public drive() {
         console.log("Driving a sports car!");
     }
 }
 
 class SedanCar extends Car {
-    drive() {
+    public drive() {
         console.log("Driving a sedan car.");
     }
 }
@@ -19,13 +19,13 @@ abstract class CarFactory {
 }
 
 class SportsCarFactory extends CarFactory {
-    createCar() {
+    public createCar() {
         return new SportsCar();
     }
 }
 
 class SedanCarFactory extends CarFactory {
-    createCar() {
+    public createCar() {
         return new SedanCar();
     }
 }
